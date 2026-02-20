@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Carta Especial</title>
+    <style>
+      .envelope-container {
+        perspective: 1000px;
+        margin: 3rem 0;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .envelope {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #e85b8a;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .envelope::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #f47ba4;
+        z-index: 1;
+        transition: clip-path 0.6s ease;
+        clip-path: polygon(0 0, 50% 40%, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .envelope.open::before {
+        clip-path: polygon(0 0, 50% 40%, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .envelope-flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 50%;
+        background: none;
+        z-index: 2;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: top center;
+        clip-path: polygon(0 0, 50% 40%, 100% 0, 100% 50%, 50% 90%, 0 50%);
+        background: #e85b8a;
+        box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1) inset;
+      }
+
+      .envelope:hover .envelope-flap {
+        filter: brightness(1.1);
+      }
+
+      .envelope.open .envelope-flap {
+        transform: rotateX(180deg) translateZ(1px);
+      }
+
+      .envelope-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 55%;
+        background: #f47ba4;
+        z-index: 1;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .envelope-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #333;
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-align: center;
+        opacity: 1;
+        transition: opacity 0.6s ease;
+        z-index: 3;
+      }
+
+      .envelope.open .envelope-text {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .envelope:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .carta-aberta {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        max-width: 90%;
+        width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        z-index: 1000;
+        animation: slideUp 0.6s ease;
+      }
+
+      .carta-aberta.show {
+        display: block;
+      }
+
+      .carta-backdrop {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+
+      }
+
+      .carta-backdrop.show {
+        display: block;
+      }
+
+      .carta-title {
+        color: #f075a2;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .carta-content {
+        color: #333;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        font-family: 'Georgia', serif;
+      }
+
+      .close-carta {
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: 0.8rem;
+        background: #f075a2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .close-carta:hover {
+        background: #f47ba4;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -40%);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+    </style>
+</head>
+<body>
+    <main class="app">
+      <h1>Carta para Você</h1>
+      <p>Clique no envelope para abrir</p>
+
+      <div class="envelope-container">
+        <div class="envelope" id="envelope" onclick="abrirCarta()">
+          <div class="envelope-body"></div>
+          <div class="envelope-flap"></div>
+        </div>
+      </div>
+
+      <div class="carta-backdrop" id="backdrop" onclick="fecharCarta()"></div>
+      
+      <div class="carta-aberta" id="cartaAberta">
+        <h2 class="carta-title">Para Camila</h2>
+        <div class="carta-content">
+          <p>Itapetininga, 20 de fev de 2026</p>
+          <p>Camila, apesar de todas as brincadeiras e mesmo que a gente seja farinha do mesmo saco,
+            foi ótimo dividir minhas férias com você, mesmo que eu vá embora, vou
+        guardar nossos momentos em um lugar especial</p>
+          <p>Obrigado por ser uma ótima peguete das férias</p>
+          <p>Com carinho,<br>Rafaela</p>
+        </div>
+        <button class="close-carta" onclick="fecharCarta()">Fechar</button>
+      </div>
+      
+      <div class="back-button-container">
+        <button class="choice-btn secondary" onclick="window.location.href='aceitar.html'">
+          Voltar às cartas</button>
+      </div>
+    </main>
+
+    <script>
+      function abrirCarta() {
+        document.getElementById('envelope').classList.add('open');
+        document.getElementById('cartaAberta').classList.add('show');
+        document.getElementById('backdrop').classList.add('show');
+      }
+
+      function fecharCarta() {
+        document.getElementById('envelope').classList.remove('open');
+        document.getElementById('cartaAberta').classList.remove('show');
+        document.getElementById('backdrop').classList.remove('show');
+      }
+    </script>
+  </body>
+</html>

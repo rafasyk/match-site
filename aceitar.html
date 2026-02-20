@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Cartas Especiais</title>
+</head>
+<body>
+    <main class="app">
+      <h1>Escolha as cartas!</h1>
+      <p>Obs: a ordem não importa muito </p>
+
+      <div class="cards-container">
+        <div class="card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">?</div>
+            <div class="card-back">Se você estiver dando sua risadinha enquanto lê isso, então já valeu todo o meu esforço</div>
+          </div>
+        </div>
+        
+        <div class="card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">?</div>
+            <div class="card-back">
+              <span>Mais uma surpresa pra você</span>
+              <button class="choice-btn surprise" onclick="window.location.href='carta.html'; event.stopPropagation();">Abrir</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">?</div>
+            <div class="card-back">
+              <span>Não consegui escolher só uma música, 
+                então aproveite isso</span>
+              <button class="choice-btn spotify" onclick="window.open('https://open.spotify.com/playlist/6S9iYutpFvxps5Q6a8yJRS?si=bafefec4883748b5&pt=a225da2e0b307916425b3d39404f1703', '_blank'); event.stopPropagation();">Ouvir Playlist</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">?</div>
+            <div class="card-back">Vale Presente! <br> Vale um beijo no pecoço enquanto eu fico por cima de você</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="back-button-container">
+        <button class="choice-btn secondary" onclick="window.location.href='index.html'">
+          Voltar</button>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

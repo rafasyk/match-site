@@ -1,0 +1,289 @@
+:root {
+  color-scheme: light;
+  --bg: whitesmoke;
+  --primary: #f075a2;
+  --text: #24151d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Oswald", sans-serif;
+  color: whitesmoke;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  background: radial-gradient(circle at top, #ff73ad 0%, var(--bg) 70%);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.app {
+  width: min(680px, 100%);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+
+.match-button {
+  margin-top: 1.25rem;
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px rgba(255, 77, 141, 0.3);
+}
+
+.match-button:hover {
+  transform: translateY(-2px);
+}
+
+.match-scene {
+  margin-top: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.photos {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.profile {
+  width: 190px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+}
+
+.profile-left {
+  transform: translateX(-90px) scale(0.8) rotate(-10deg);
+  animation: slideLeft 0.7s ease-out forwards;
+}
+
+.profile-right {
+  transform: translateX(90px) scale(0.8) rotate(10deg);
+  animation: slideRight 0.7s ease-out forwards;
+}
+
+.match-label {
+  margin-top: 1.4rem;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  font-weight: 900;
+  color: var(--primary);
+  text-shadow: 0 6px 20px rgba(255, 77, 141, 0.35);
+  transform: scale(0.3);
+  opacity: 0;
+  animation: pop 700ms 450ms cubic-bezier(0.2, 1.2, 0.2, 1) forwards;
+}
+
+.next-step {
+  margin-top: 1.25rem;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 500ms 1000ms ease forwards;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem auto;
+  max-width: 1000px;
+  padding: 0 2rem;
+  flex-wrap: nowrap;
+}
+
+.card {
+  width: 180px;
+  aspect-ratio: 4/5;
+  cursor: pointer;
+  perspective: 1000px;
+  flex-shrink: 0;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 12px;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 1.2rem;
+}
+
+.card-front {
+  background: #f075a2;
+  color: white;
+  font-size: 2.2rem;
+  box-shadow: 0 4px 15px rgba(240, 117, 162, 0.2);
+}
+
+.card-back {
+  background: #fff5f8;
+  color: #333;
+  transform: rotateY(180deg);
+  padding: 1.2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-direction: column;
+  gap: 0.8rem;
+  overflow-y: auto;
+  box-shadow: 0 4px 15px rgba(240, 117, 162, 0.15);
+  border: 2px solid #f075a2;
+}
+
+.card:hover .card-front {
+  box-shadow: 0 8px 20px rgba(240, 117, 162, 0.3);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1024px) {
+  .cards-container {
+    gap: 1.5rem;
+  }
+  
+  .card {
+    width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .card {
+    width: 160px;
+  }
+}
+
+.next-step-question {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.choice-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.choice-btn {
+  border: 0;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.choice-btn.primary {
+  background: #63f57c;
+  color: #fff;
+}
+
+.choice-btn.surprise {
+  background: #ff80c2;
+  font-family: "Oswald", sans-serif;
+  color: whitesmoke;
+}
+
+.choice-btn.spotify {
+  background: #ff80c2;
+  font-family: "Oswald", sans-serif;
+  color: whitesmoke;
+}
+
+.choice-btn.secondary {
+  background: #ff6b6b;
+  color: #f5f2f3;
+}
+
+.back-button-container {
+  margin-top: 2rem;
+}
+
+.wrong {
+  display: none;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.6rem;
+  color: whitesmoke;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+@keyframes slideLeft {
+  to {
+    transform: translateX(0) scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  to {
+    transform: translateX(0) scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pop {
+  70% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,21 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Para Camila</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Para Camila</title>
 </head>
 <body>
-<div class="convite">
-<h1>Parabéns!! Você ganhou um convite especial!</h1>
-<span id="heart" class="heart hidden">♥</span>
-<br>
-<button class="btn-convite" onclick="window.location.href='convite.html'">
-  clique para ver o convite
-</button>
-</div>
+    <main class="app">
+      <h1>Preparada?</h1>
+      <p>Clique para revelar algo</p>
 
-  <script src="script.js"></script>
-</body>
+      <button id="matchButton" class="match-button">Clique Aqui</button>
+
+      <section id="matchScene" class="match-scene hidden" aria-live="polite">
+        <div class="photos">
+          <img
+            src="/imgcamila.PNG"
+            alt="Camila img"
+            class="profile profile-left"
+          />
+          <img
+            src="/imgrafaela.PNG"
+            alt="Rafaela img"
+            class="profile profile-right"
+          />
+        </div>
+        <div id="matchLabel" class="match-label">Tá na cara que somos um ótimo match!</div>
+     <div class="next-step">
+          <p class="next-step-question">O que fazemos com essa informação?</p>
+          <div class="choice-actions">
+            <button class="choice-btn primary" onclick="window.location.href='aceitar.html'">
+                Aceitar e continuar</button>
+            <button class="choice-btn secondary" onclick="window.location.href='recusar.html'">
+            Ver outros perfis</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>
