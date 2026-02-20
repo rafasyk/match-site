@@ -24,7 +24,7 @@ body {
 }
 
 .app {
-  width: min(680px, 100%);
+  width: min(1200px, 100%);
   text-align: center;
 }
 
@@ -109,17 +109,24 @@ h1 {
   align-items: center;
   gap: 2rem;
   margin: 3rem auto;
-  max-width: 1000px;
-  padding: 0 2rem;
-  flex-wrap: nowrap;
+  max-width: 1200px;
+  padding: 0 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+.cards-container::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
-  width: 180px;
+  width: 220px;
   aspect-ratio: 4/5;
   cursor: pointer;
   perspective: 1000px;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  scroll-snap-align: center;
 }
 
 .card-inner {
@@ -183,13 +190,12 @@ h1 {
   }
   
   .card {
-    width: 180px;
+    width: 200px;
   }
 }
 
 @media (max-width: 768px) {
   .cards-container {
-    flex-wrap: wrap;
     gap: 1rem;
   }
   
@@ -222,18 +228,6 @@ h1 {
 .choice-btn.primary {
   background: #63f57c;
   color: #fff;
-}
-
-.choice-btn.surprise {
-  background: #ff80c2;
-  font-family: "Oswald", sans-serif;
-  color: whitesmoke;
-}
-
-.choice-btn.spotify {
-  background: #ff80c2;
-  font-family: "Oswald", sans-serif;
-  color: whitesmoke;
 }
 
 .choice-btn.secondary {
